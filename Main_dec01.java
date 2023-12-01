@@ -148,7 +148,6 @@ public class Main_dec01 {
 		// 숫자를 입력하고 입력된 위치에 새로운 숫자를 삽입
 
 		int[] num = new int[4];
-		String[] newArray = new String[num.length + 1];
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("입력할 숫자의 갯수? :");
@@ -157,16 +156,28 @@ public class Main_dec01 {
 		for (int i = 0; i < num.length; i++) {
 			System.out.print((i + 1) + "의 숫자 : ");
 			num[i] = scanner.nextInt();
-
 		}
 		System.out.print("숫자를 삽입하고자 하는 위치는 ? :");
 		int jj = scanner.nextInt();
 		System.out.print("삽입하고자 하는 수는 ? ");
-
 		int ll = scanner.nextInt();
+
+		int newValue = ll; // 새로운 숫자.
+		int position = jj - 1; // 추가할 위치.
+		int newNumLength = num.length + 1; // 새로운 배열의 길이.
+		int[] newNum = new int[newNumLength]; // 새로운 배열의 생성.
+
 		System.out.println("--------결과---------");
-		for (int i = 0; i < num.length; i++) {
-			System.out.println(num[i]);
+
+		for (int i = 0; i < newNum.length; i++) {
+			if (i < position) {
+				newNum[i] = num[i];
+			} else if (i == position) {
+				newNum[i] = newValue;
+			} else {
+				newNum[i] = num[i - 1];
+			}
+			System.out.println(newNum[i]);
 		}
 
 	}
